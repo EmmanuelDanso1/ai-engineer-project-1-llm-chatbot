@@ -26,3 +26,7 @@ venv\Scripts\activate
 
 ### Installing Dependencies
 pip install -r requirements.txt
+
+### Setup with an updated README.md 
+- **OPENAI_API_KEY** was set from **OPENAI** platform
+- **.env** was placed into **.gitignore** file. This was done to prevent commiting **.env** to github.
