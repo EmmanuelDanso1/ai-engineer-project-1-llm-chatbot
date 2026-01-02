@@ -28,5 +28,5 @@ venv\Scripts\activate
 pip install -r requirements.txt
 
 ### Setup with an updated README.md 
-- **GEMINI_API_KEY** was set from **OPENAI** platform
+- **GEMINI_API_KEY** was set from **GOOGLE STUDIO** platform
 - **.env** was placed into **.gitignore** file. This was done to prevent commiting **.env** to github.
