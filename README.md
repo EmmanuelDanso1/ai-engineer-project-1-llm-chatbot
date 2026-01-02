@@ -8,7 +8,7 @@ The project is structured to run inside a Python virtual environment to ensure d
 
 ## Technologies Used
 - **Python 3.12**
-- **OpenAI API**
+- **Gemini API**
 - **Virtual Environment (venv)**
 - **VS Code**
 
@@ -28,5 +28,5 @@ venv\Scripts\activate
 pip install -r requirements.txt
 
 ### Setup with an updated README.md 
-- **OPENAI_API_KEY** was set from **OPENAI** platform
+- **GEMINI_API_KEY** was set from **OPENAI** platform
 - **.env** was placed into **.gitignore** file. This was done to prevent commiting **.env** to github.
