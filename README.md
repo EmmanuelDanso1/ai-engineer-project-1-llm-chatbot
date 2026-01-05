@@ -37,3 +37,11 @@ Leveraging Gemini Chat API. Knowing API is stateless such that it doesn't keep r
 
 ## CLI Chatbot
 Creating a command line interface chatbot to take multimodal user inputs
+
+
+## Project 3 - Tokenization and Context Management
+Tokens are the fundamental unit of cost and context for LLMs. An AI Engineer must master token counting to manage API costs, prevent context window overflow, and optimize the efficiency of every API call.
+
+- **Tokenization and Token counting**
+- **Maximum Tokens and Context Length**
+- **Context Management Stragtegies**
