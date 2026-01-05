@@ -3,6 +3,7 @@ from dotenv import load_dotenv
 from google import genai
 
 from .tokens import count_tokens
+from .prompts import SYSTEM_PROMPT
 
 load_dotenv()
 
@@ -15,6 +16,12 @@ EXERCISE_MAX_CONTEXT_TOKENS = 4096
 RESERVED_OUTPUT_TOKENS = 500
 TRUNCATE_THRESHOLD_TOKENS = 3500
 
+# NB:
+# Gemini chat sessions do not currently support temperature control.
+# We define TEMPERATURE = 0.1 to document stable generation intent,
+TEMPERATURE = 0.1
+
+
 # ======================
 # CLIENT SETUP
 # ======================
@@ -25,7 +32,7 @@ chat = client.chats.create(model=MODEL_NAME)
 
 
 # Maintain our own message history
-messages: list[dict[str, str]] = []
+messages: list[dict[str, str]] = [{"role": "system", "content": SYSTEM_PROMPT}]
 
 # ======================
 # MAIN LOOP
@@ -57,20 +64,20 @@ while True:
     print(f"Tokens (estimated input): {input_tokens_estimate}")
 
     # ======================
-    # CONTEXT TRUNCATION
+    # SYSTEM PROMPT
     # ======================
     while (
         input_tokens_estimate + RESERVED_OUTPUT_TOKENS
         > EXERCISE_MAX_CONTEXT_TOKENS
     ):
-        if len(messages) >= 2:
-            # Remove oldest user+assistant pair
-            messages.pop(0)
-            messages.pop(0)
+        # Never remove system prompt
+        if len(messages) > 2 and messages[0]["role"] == "system":
+            # Remove oldest user+assistant pair AFTER system prompt
+            messages.pop(1)
+            messages.pop(1)
             print("[context] Truncated oldest messages to fit token budget.")
-        elif messages:
-            # Malformed history edge case
-            messages.pop(0)
+        elif len(messages) > 1:
+            messages.pop(1)
             print("[context] Truncated malformed message.")
         else:
             break

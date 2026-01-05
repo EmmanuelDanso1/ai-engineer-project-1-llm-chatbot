@@ -39,9 +39,18 @@ Leveraging Gemini Chat API. Knowing API is stateless such that it doesn't keep r
 Creating a command line interface chatbot to take multimodal user inputs
 
 
-## Project 3 - Tokenization and Context Management
+## Project 3 - Day 3: Tokenization and Context Management
 Tokens are the fundamental unit of cost and context for LLMs. An AI Engineer must master token counting to manage API costs, prevent context window overflow, and optimize the efficiency of every API call.
 
 - **Tokenization and Token counting**
 - **Maximum Tokens and Context Length**
 - **Context Management Stragtegies**
+
+## Project 4- Day 4: System Prompt
+The System Prompt is the most powerful tool an AI Engineer has to define the model's persona, constraints, and instructions, fundamentally changing its output without retraining.
+
+- **Defining persona and constraints**
+- **Controlling creativity with Temperature**
+- **Controlling diversity with top_p**
+
+
