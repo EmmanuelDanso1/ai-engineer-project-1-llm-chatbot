@@ -1,7 +1,7 @@
 # Project 1 - Day1: Leveraging LLM APIs with Python
 
 ## Project Overview
-This project demonstrates how to leverage **Large Language Model (LLM) APIs** using **Python**, with **OpenAI** as the LLM provider.  
+This project demonstrates how to leverage **Large Language Model (LLM) APIs** using **Python**, with **GEMINI** as the LLM provider.  
 The project is structured to run inside a Python virtual environment to ensure dependency isolation and reproducibility.
 
 ---
@@ -52,5 +52,4 @@ The System Prompt is the most powerful tool an AI Engineer has to define the mod
 - **Defining persona and constraints**
 - **Controlling creativity with Temperature**
 - **Controlling diversity with top_p**
-
 
