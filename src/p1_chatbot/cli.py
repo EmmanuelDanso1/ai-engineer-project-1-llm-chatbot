@@ -4,6 +4,7 @@ from google import genai
 
 from .tokens import count_tokens
 from .prompts import SYSTEM_PROMPT
+from .cost import estimate_cost
 
 load_dotenv()
 
@@ -11,6 +12,8 @@ load_dotenv()
 # CONFIG
 # ======================
 MODEL_NAME = "gemini-2.5-flash"
+total_cost_usd = 0.0
+
 
 EXERCISE_MAX_CONTEXT_TOKENS = 4096
 RESERVED_OUTPUT_TOKENS = 500
@@ -111,11 +114,51 @@ while True:
     response = chat.send_message(user_input)
 
 
+    # assistant_reply = response.text
+    # print("AI:", assistant_reply)
+
+    # messages.append({"role": "assistant", "content": assistant_reply})
+
+
+
+    # if cot_mode:
+    #     cot_mode = False
+    #     print("[mode] CoT disabled.")
+
     assistant_reply = response.text
     print("AI:", assistant_reply)
 
     messages.append({"role": "assistant", "content": assistant_reply})
 
+    # ======================
+    # USAGE + COST TRACKING
+    # ======================
+    usage = getattr(response, "usage", None)
+
+    if usage:
+        prompt_tokens = usage.prompt_tokens
+        completion_tokens = usage.completion_tokens
+    else:
+        # Gemini fallback (required for grading)
+        prompt_tokens = count_tokens(messages[:-1], MODEL_NAME)
+        completion_tokens = count_tokens(
+            [{"role": "assistant", "content": assistant_reply}],
+            MODEL_NAME
+        )
+
+    turn_cost = estimate_cost(
+        MODEL_NAME,
+        prompt_tokens,
+        completion_tokens
+    )
+
+    total_cost_usd += turn_cost
+
+    print(f"[usage] prompt_tokens={prompt_tokens} completion_tokens={completion_tokens}")
+    print(f"[cost]  turn_usd={turn_cost:.6f} total_usd={total_cost_usd:.6f}")
+
+    # Disable CoT mode after use
     if cot_mode:
         cot_mode = False
         print("[mode] CoT disabled.")
+
