@@ -22,6 +22,9 @@ TRUNCATE_THRESHOLD_TOKENS = 3500
 TEMPERATURE = 0.1
 
 
+# coT = Chain of Thought
+cot_mode = False
+
 # ======================
 # CLIENT SETUP
 # ======================
@@ -49,13 +52,31 @@ while True:
         print("Goodbye")
         break
 
+    
+
     # Get history
     if user_input == "history":
         print(messages)
         continue
 
+    # Chain of thoughts enabled
+    if user_input.lower() == "/cot":
+        cot_mode = True
+        print("[mode] CoT enabled for next turn.")
+        continue
+
+
     # Add user message
+    # messages.append({"role": "user", "content": user_input})
+
+    if cot_mode:
+        user_input = (
+            "Explain your reasoning step-by-step, then give the final answer.\n\n"
+            + user_input
+        )
+
     messages.append({"role": "user", "content": user_input})
+
 
     # ======================
     # TOKEN COUNTING
@@ -94,3 +115,7 @@ while True:
     print("AI:", assistant_reply)
 
     messages.append({"role": "assistant", "content": assistant_reply})
+
+    if cot_mode:
+        cot_mode = False
+        print("[mode] CoT disabled.")

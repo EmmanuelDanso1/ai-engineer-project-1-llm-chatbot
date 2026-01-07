@@ -53,3 +53,16 @@ The System Prompt is the most powerful tool an AI Engineer has to define the mod
 - **Controlling creativity with Temperature**
 - **Controlling diversity with top_p**
 
+## Project 5 - Day 5: Prompting Techniques
+Prompting techniques using Zero-shot, Few-shot and Chain of Thought to check the state of prompting.
+
+- ## Zero-Shot prompting
+The model is asked to do a task without being given any examples.
+It relies entirely on what it already learned during training.
+
+- ## Few-shot prompting
+The model is given a few examples (usually 1–5) to show how to do the task before answering a new one.
+
+- ## Chain of thoughts
+The model is encouraged to reason step-by-step before giving the final answer.
+This improves performance on logic, math, and multi-step reasoning problems.
