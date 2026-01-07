@@ -66,3 +66,6 @@ The model is given a few examples (usually 1–5) to show how to do the task bef
 - ## Chain of thoughts
 The model is encouraged to reason step-by-step before giving the final answer.
 This improves performance on logic, math, and multi-step reasoning problems.
+
+## Project 6 - Day 6: Pricing and Cost Estimation for LLM
+This concept explains how LLM providers structure pricing, the important distinction between input and output token costs, and why this matters for cost optimization and budgeting.
